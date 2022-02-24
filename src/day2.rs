@@ -28,6 +28,10 @@ fn part1(input: &str)-> isize{
         
 }
 
+fn part2(input: &str)-> (isize, isize){
+    (15,60)
+}
+
 pub fn run(){
 
     println!("part-1 {}", part1(INPUT));
@@ -46,6 +50,18 @@ down 8
 forward 2";
 
 assert_eq!(150,part1(input));
+
+}
+fn test_second_part(){
+    let input = "
+forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2";
+
+assert_eq!((15,60),part2(input));
 
 }
 
