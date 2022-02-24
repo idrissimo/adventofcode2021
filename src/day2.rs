@@ -28,13 +28,39 @@ fn part1(input: &str)-> isize{
         
 }
 
-fn part2(input: &str)-> (isize, isize){
-    (15,60)
+fn part2(input: &str)-> (i32, i32, i32){
+
+    let data = input.trim()
+                    .lines()
+                    .map(|line|line.trim())
+                    .map(|line|line.split_at(line.find(' ').unwrap()))
+                    .map(|(c,v)|(c, v.trim().parse::<i32>().unwrap()))
+                    .fold((0,0,0),|acc,cv|{
+                        match cv.0 {
+                            "up" =>  (acc.0 - cv.1 , acc.1, acc.2),
+                            "down" => (acc.0 + cv.1 , acc.1, acc.2),
+                            "forward"=> (acc.0, acc.1 + cv.1, acc.2 + acc.0 * cv.1),
+                            _ => acc,
+                        }
+                    });
+    
+                    return data;
+
 }
 
 pub fn run(){
+    let input = "
+    forward 5
+    down 5
+    forward 8
+    up 3
+    down 8
+    forward 2";
 
     println!("part-1 {}", part1(INPUT));
+
+    let data = part2(INPUT);
+    println!("part-2 {}", data.1 * data.2);
 }
 
     
@@ -52,6 +78,7 @@ forward 2";
 assert_eq!(150,part1(input));
 
 }
+#[test]
 fn test_second_part(){
     let input = "
 forward 5
@@ -61,7 +88,7 @@ up 3
 down 8
 forward 2";
 
-assert_eq!((15,60),part2(input));
+assert_eq!((10,15,60),part2(input));
 
 }
 
