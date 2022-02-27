@@ -1,15 +1,27 @@
 const INPUT: &str = include_str!("3.txt");
+const INPUT_TEST: &str = "00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010";
 
 pub fn run(){
    println!("{}", part1(INPUT));
 }
 
 // Retourne un array avec le nombre d apparition du '1' dans chaque colonne + le nombre de lignes.
-fn count(input: &str)->[i32;6]{
+fn count(input: &str)->[i32;13]{
     input.trim()
         .lines()
         .map(|line|line.trim().chars().collect::<Vec<char>>())
-        .fold([0;6],|mut acc,x|{
+        .fold([0;13],|mut acc,x|{
             for (i,v) in x.iter().enumerate(){
                 match v {
                     '1' => acc[i] += 1,
@@ -17,7 +29,7 @@ fn count(input: &str)->[i32;6]{
 
                 }
             }
-            acc[5] += 1; //line numbers
+            acc[12] += 1; //line numbers
             acc
         })
 }
@@ -28,8 +40,8 @@ pub fn part1(input:&str)-> i32 {
    
     let count = count(input);
 
-    let ones = &count[..5];
-    let lines = count[5];
+    let ones = &count[..12];
+    let lines = count[12];
    // let mut gamma = ['0';5];
     //let mut epsilon = ['0';5];
     let mut g = String::new();
