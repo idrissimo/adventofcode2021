@@ -14,7 +14,7 @@ fn count(input: &str) -> [i32; 13] {
             for (i, v) in x.iter().enumerate() {
                 match v {
                     '1' => acc[i] += 1,
-                    _ => println!("Ain't special"),
+                    _ => (),
                 }
             }
             acc[12] += 1; //line numbers
